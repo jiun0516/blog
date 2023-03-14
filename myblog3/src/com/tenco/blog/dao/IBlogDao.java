@@ -6,5 +6,6 @@ public interface IBlogDao {
 	
 	void select();
 	BlogDto select(int id);
+	int delete(int boardId);
 
 }

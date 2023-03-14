@@ -16,4 +16,18 @@ public class BlogService {
 		return resultDto;
 	}
 	
+	public int deleteBoardById(int boardId, int userId) {
+		int resultRow = 0;
+		
+		BlogDto blogDto = selectByBoardId(boardId);
+		if(blogDto != null) {
+			int blogWriterId = blogDto.getUserId();
+			if(blogWriterId == userId) {
+				resultRow = blogDao.delete(boardId);
+			}
+		}
+		
+		return resultRow;
+	}
+
 }

@@ -15,5 +15,10 @@ public class BlogController {
 		BlogDto responseDto = blogService.selectByBoardId(id);
 		return responseDto;
 	}
+	
+	public int requestDeleteBoardById(int boardId, int userId) {
+		int responseRow = blogService.deleteBoardById(boardId, userId);
+		return responseRow;
+	}
 
 }

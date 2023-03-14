@@ -53,6 +53,25 @@ public class BlogDao implements IBlogDao {
 		}
 		return blogDto;
 	}
+
+	@Override
+	public int delete(int boardId) {
+		int resultRow = 0;
+		
+		String sql =  " DELETE FROM board "
+							+ " WHERE id = ? ";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardId);
+			resultRow = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(" >> delete 에서 에러 발생 << ");
+			e.printStackTrace();
+		}
+		
+		return resultRow;
+	}
 	
 
 }
