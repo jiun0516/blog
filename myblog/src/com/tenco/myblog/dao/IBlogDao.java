@@ -1,5 +1,11 @@
 package com.tenco.myblog.dao;
 
-public interface IBlogDao {
+import com.tenco.myblog.dto.BlogDto;
 
+public interface IBlogDao {
+	
+	// public a... 생략
+	void select(); // 전체 조회
+	BlogDto select(int id); // id 기반으로 조회
+	int delete(int boardId);
 }
