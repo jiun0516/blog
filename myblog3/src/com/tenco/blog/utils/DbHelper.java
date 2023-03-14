@@ -1,14 +1,8 @@
-package com.tenco.myblog.utils;
+package com.tenco.blog.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-/**
- * 
- * @author GGG
- *
- */
 
 public class DbHelper {
 
@@ -21,15 +15,12 @@ public class DbHelper {
 
 	private Connection conn;
 
-	// 싱글톤 패턴
-	// 1. 기본 생성자를 만들어서 private 설정
 	private DbHelper() {
+
 	}
 
-	// 2. 자기 자신을 private 으로 선언
 	private static DbHelper dbHelper;
 
-	// 3. 외부 어디서든지 접근 가능한 static 메소드를 만들어 준다.
 	public static DbHelper getInstance() {
 		if (dbHelper == null) {
 			dbHelper  = new DbHelper();
@@ -38,9 +29,8 @@ public class DbHelper {
 	}
 
 	public Connection getConnection() {
-		
+
 		if (conn == null) {
-			// 한번도 생성하지 않았다면 동작
 			String urlFormat = "jdbc:mysql://%s:%s/%s?serverTimezone=Asia/Seoul&characterEncoding=%s";
 			String url = String.format(urlFormat, DB_HOST, DB_PORT, DB_DATABASE_NAME, DB_CHARSET);
 			try {
@@ -52,11 +42,9 @@ public class DbHelper {
 				e.printStackTrace();
 			}
 		}
-		// todo 추후 삭제 예정
-		// System.out.println("DbHelper 안에서 주소 찍어보기 : " + this);
 		return conn;
 	}
-
+	
 	public void closeConnection() {
 		try {
 			conn.close();
